@@ -1,0 +1,10 @@
+.inter{
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.SelectedBtn{
+  background-color: #14803c;
+  color: white;
+}

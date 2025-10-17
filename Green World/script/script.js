@@ -200,7 +200,7 @@ const treeBtn = (arr) => {
     `;
 
     dv1.innerHTML = `
-    <button id=btn1-${it.id} onclick="selctedBtn1(${it.id})" class=" AllBtns1 cursor-pointer w-full  hover:bg-[#58d786] hover:text-white text-left py-1 px-1 rounded-md">${it.category_name}</button>
+    <button id=btn1-${it.id} onclick="selctedBtn(${it.id})" class=" AllBtns1 cursor-pointer w-full  hover:bg-[#58d786] hover:text-white text-left py-1 px-1 rounded-md">${it.category_name}</button>
     `;
     treeCatagry.appendChild(dv);
     treeCatagorySm.appendChild(dv1);
@@ -219,11 +219,18 @@ allTreeCatagory();
 const ClearSelectedBtnStyle=()=>{
 
   const allBtn=document.getElementsByClassName('AllBtns');
+
+  const allBtn1=document.querySelectorAll('.AllBtns1');
+  //console.log(allBtn1);
   for(it of allBtn){
     //console.log(it);
     it.classList.remove('SelectedBtn');
   }
-  //allBtn.classList.remove('SelectedBtn');
+  //For small size catagory selected btn
+
+  for(it1 of allBtn1){
+    it1.classList.remove('SelectedBtn');
+  }
 
 }
 
@@ -233,6 +240,9 @@ const specificBtnItems=(SpecificPlants)=>{
 
   const plantsSection = document.getElementById('card_Section');
   plantsSection.innerText="";
+
+
+  
   for(it of SpecificPlants){
 
     const dv=document.createElement('div');
@@ -249,8 +259,8 @@ const specificBtnItems=(SpecificPlants)=>{
 
                 </div>
                 <p class=" mt-4 font-semibold mb-2">${it.name}</p>
-                <p class="mt-3 mb-7 text-justify sm:h-[8rem] md:h-[6rem]">${it.description}</p>
-                <div class="flex justify-between items-center mb-5 h-[3rem]">
+                <p class="mt-1 text-justify sm:h-[8rem] md:h-[6rem]">${it.description}</p>
+                <div class="flex justify-between items-center mb-5 mt-4 h-[3rem]">
                   <button class="px-2 py-1 bg-[#cef0dc] rounded-full text-[#14803c] font-medium cursor-pointer">${it.category}</button>
                   <p class="font-semibold "><span>৳</span>${it.price}</p>
                 </div>
@@ -277,9 +287,11 @@ const selctedBtn=(id)=>{
   .then(data => specificBtnItems(data.plants));
   
   const specificBtn=document.getElementById(`btn-${id}`);
+  const specificBtn1=document.getElementById(`btn1-${id}`);
   
   ClearSelectedBtnStyle();
   specificBtn.classList.add("SelectedBtn");
+   specificBtn1.classList.add('SelectedBtn');
 }
 
 

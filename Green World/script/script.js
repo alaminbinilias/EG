@@ -1,172 +1,96 @@
+///Cart Section
 
-
-
-// console.log('connected');
-
-
-// modal section for responsive cart section
-
-
-const viewCartBtn = document.getElementById('viewForCart');
-
-const modalDetails = document.getElementById('modlDetails');
-//console.log(modalDetails);
-
-modalDetails.innerHTML = `
-
-
-<div class="max-h-[50rem] block md:hidden bg-[#ffffff] col-span-2 rounded-md">
-            <div class="p-3">
-              <p class="mb-2 font-semibold text-[1.5rem] inter">Your Cart</p>
-              <div class="bg-[#f0fcf4] p-2 rounded-md mb-2">
-                <p>Mango Tree</p>
+  let i=0;
+  let pr=0;
+  const CartSection=async(id)=>{
+  const url=`https://openapi.programming-hero.com/api/plant/${id}`;
+  const res=await fetch(url);
+  const data=await res.json();
+  const mnData=data.plants;
+  //console.log(mnData);
+    const CartSections=document.getElementById('DesktopCartSection');
+    //alert("Hello");
+    const dv=document.createElement('div');
+    pr+=mnData.price;
+    i++;
+    //console.log(pr);
+    
+    //price+=pr;
+    dv.innerHTML=`
+    
+    <div class="px-3 relative">
+              <div id="ClearBtn-${i}" class="bg-[#f0fcf4] p-2 rounded-md mb-2">
+                <p class="font-medium">${mnData.name}</p>
                 <div class="flex justify-between">
                   <div>
-                    <p class="mt-1"><span>৳</span>500 x 1</p>
+                    <p class="mt-1"><span>৳</span>${mnData.price}</p>
                   </div>
                   <div class="-mt-2">
-                    <span class="cursor-pointer"><i class="fa-solid fa-xmark"></i></span>
-                  </div>
-                </div>
-              </div>
-
-
-              <div class="bg-[#f0fcf4] p-2 rounded-md mb-2">
-                <p>Mango Tree</p>
-                <div class="flex justify-between">
-                  <div>
-                    <p class="mt-1"><span>৳</span>500 x 1</p>
-                  </div>
-                  <div class="-mt-2">
-                    <span class="cursor-pointer"><i class="fa-solid fa-xmark"></i></span>
-                  </div>
-                </div>
-              </div>
-
-
-              <div class="bg-[#f0fcf4] p-2 rounded-md mb-2">
-                <p>Mango Tree</p>
-                <div class="flex justify-between">
-                  <div>
-                    <p class="mt-1"><span>৳</span>500 x 1</p>
-                  </div>
-                  <div class="-mt-2">
-                    <span class="cursor-pointer"><i class="fa-solid fa-xmark"></i></span>
-                  </div>
-                </div>
-              </div>
-
-
-              <div class="bg-[#f0fcf4] p-2 rounded-md mb-2">
-                <p>Mango Tree</p>
-                <div class="flex justify-between">
-                  <div>
-                    <p class="mt-1"><span>৳</span>500 x 1</p>
-                  </div>
-                  <div class="-mt-2">
-                    <span class="cursor-pointer"><i class="fa-solid fa-xmark"></i></span>
-                  </div>
-                </div>
-              </div>
-
-
-              <div class="bg-[#f0fcf4] p-2 rounded-md mb-2">
-                <p>Mango Tree</p>
-                <div class="flex justify-between">
-                  <div>
-                    <p class="mt-1"><span>৳</span>500 x 1</p>
-                  </div>
-                  <div class="-mt-2">
-                    <span class="cursor-pointer"><i class="fa-solid fa-xmark"></i></span>
-                  </div>
-                </div>
-              </div>
-
-
-
-              <div class="bg-[#f0fcf4] p-2 rounded-md mb-2">
-                <p>Mango Tree</p>
-                <div class="flex justify-between">
-                  <div>
-                    <p class="mt-1"><span>৳</span>500 x 1</p>
-                  </div>
-                  <div class="-mt-2">
-                    <span class="cursor-pointer"><i class="fa-solid fa-xmark"></i></span>
-                  </div>
-                </div>
-              </div>
-
-
-
-              <div class="bg-[#f0fcf4] p-2 rounded-md mb-2">
-                <p>Mango Tree</p>
-                <div class="flex justify-between">
-                  <div>
-                    <p class="mt-1"><span>৳</span>500 x 1</p>
-                  </div>
-                  <div class="-mt-2">
-                    <span class="cursor-pointer"><i class="fa-solid fa-xmark"></i></span>
-                  </div>
-                </div>
-              </div>
-
-
-
-              <div class="bg-[#f0fcf4] p-2 rounded-md mb-2">
-                <p>Mango Tree</p>
-                <div class="flex justify-between">
-                  <div>
-                    <p class="mt-1"><span>৳</span>500 x 1</p>
-                  </div>
-                  <div class="-mt-2">
-                    <span class="cursor-pointer"><i class="fa-solid fa-xmark"></i></span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="bg-[#f0fcf4] p-2 rounded-md mb-2">
-                <p>Mango Tree</p>
-                <div class="flex justify-between">
-                  <div>
-                    <p class="mt-1"><span>৳</span>500 x 1</p>
-                  </div>
-                  <div class="-mt-2">
-                    <span class="cursor-pointer"><i class="fa-solid fa-xmark"></i></span>
-                  </div>
-                </div>
-              </div>
-
-
-
-
-
-
-              <div class="bg-[#f0fcf4] p-2 rounded-md mb-2">
-                <p>Mango Tree</p>
-                <div class="flex justify-between">
-                  <div>
-                    <p class="mt-1"><span>৳</span>500 x 1</p>
-                  </div>
-                  <div class="-mt-2">
-                    <span class="cursor-pointer"><i class="fa-solid fa-xmark"></i></span>
+                    <button onclick="clearCart(${mnData.price},${i})" class="cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="">
-              <div class="sticky">
-                <p>
-                  <hr class="text-gray-400">
-                </p>
-                <div class="mb-5 mt-2 px-3 flex justify-between items-center inter">
-                  <p class="font-medium text-[1.2rem]">Total:</p>
-                  <p class="font-medium text-[1.2rem]"><span>৳</span>1000</p>
+
+      <div class="absolute bottom right-0" id="totalOption">
+              <div class="">
+              <div class="mb-5 mt-2 px-3 flex justify-between items-center inter">
+                  <p class="font-medium text-[1.2rem] mr-3">Total:</p>
+                  <span>৳</span><p id="PriceBtn" class="font-medium text-[1.2rem]">${pr}</p>
+              </div>
+          </div>
+    `;
+    CartSections.appendChild(dv);
+    
+  }
+
+//modal section for responsive cart section
+
+//smCart(${it.id})
+
+let pr1=0;
+
+const smCart=async(id)=>{
+  const url=`https://openapi.programming-hero.com/api/plant/${id}`;
+  const respnse=await fetch(url);
+  const cnvrtjson=await respnse.json();
+  const data=cnvrtjson.plants;
+  //console.log(data);
+  const modalDetails = document.getElementById('modlDetails');
+  console.log(modalDetails);
+  const dv=document.createElement('div');
+  pr1+=data.price;
+  dv.innerHTML=`
+
+  <div class="px-3 relative">
+              <div id="ClearBtn-${i}" class="bg-[#f0fcf4] p-2 rounded-md mb-2">
+                <p class="font-medium">${data.name}</p>
+                <div class="flex justify-between">
+                  <div>
+                    <p class="mt-1"><span>৳</span>${data.price}</p>
+                  </div>
+                  <div class="-mt-2">
+                    <button onclick="clearCart(${data.price},${i})" class="cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
+                  </div>
                 </div>
               </div>
             </div>
+
+      <div class="absolute  md:bottom right-0" id="totalOption">
+              <div class="">
+              <div class="px-9 flex justify-between items-center inter">
+                  <p class="font-medium text-[1.2rem] mr-3">Total:</p>
+                  <span>৳</span><p id="PriceBtn" class="font-medium text-[1.2rem]">${pr1}</p>
+              </div>
           </div>
 
-`;
+  
+  `;
+  modalDetails.appendChild(dv);
+
+
+}
+
 
 
 // End of_modal section for responsive cart section
@@ -253,18 +177,18 @@ const specificBtnItems=(SpecificPlants)=>{
                 <div class="For_Images h-[13rem] rounded-md">
 
                   <div>
-                    <img class="h-[13rem] w-full mx-auto rounded-md " src="${it.image}" alt="">
+                    <img class="h-[16rem] w-full mx-auto rounded-md " src="${it.image}" alt="">
                   </div>
 
 
                 </div>
-                <p class=" mt-4 font-semibold mb-2">${it.name}</p>
-                <p class="mt-1 text-justify sm:h-[8rem] md:h-[6rem]">${it.description}</p>
-                <div class="flex justify-between items-center mb-5 mt-4 h-[3rem]">
+                <p onclick="SinglePlantDescription(${it.id})" class=" mt-15 font-semibold mb-2">${it.name}</p>
+                <p class="mt-3 mb-4 text-justify sm:h-[8rem] md:h-[6rem]">${it.description}</p>
+                <div class="flex justify-between items-center mb-5 h-[3rem]">
                   <button class="px-2 py-1 bg-[#cef0dc] rounded-full text-[#14803c] font-medium cursor-pointer">${it.category}</button>
                   <p class="font-semibold "><span>৳</span>${it.price}</p>
                 </div>
-                <button class="mb-2 h-fit p-2 w-full bg-[#14803c] text-white rounded-full cursor-pointer hover:bg-green-800">Add to Cart</button>
+                <button onclick="CartSection(${it.id}),smCart(${it.id})" class="mb-2 h-fit p-2 w-full bg-[#14803c] text-white rounded-full cursor-pointer hover:bg-green-800">Add to Cart</button>
                 </div>
     
     
@@ -274,6 +198,7 @@ const specificBtnItems=(SpecificPlants)=>{
 
   }
 }
+
 
 
 const selctedBtn=(id)=>{
@@ -294,12 +219,57 @@ const selctedBtn=(id)=>{
    specificBtn1.classList.add('SelectedBtn');
 }
 
+// const clearCart=(pr,id)=>{
+//   const spBtn=document.getElementById(`ClearBtn-${id}`);
+//   spBtn.classList.add('hdn');
+//   const priceBtn=document.getElementById("PriceBtn");
+//   //spriceBtn.classList.add('hdn');
+//   //priceBtn.remove();
+//   //console.log(priceBtn);
+//   //console.log(priceBtn.innerText);
+//   total=parseInt(priceBtn.innerText);
+//   //console.log(total);
+//   //console.log(pr);
+//   total-=pr;
+//   if(total<=0){
+//     total=0;
+//   }
+//   console.log(total);
+//   priceBtn.innerText=total;
+//   priceBtn.remove();
+
+//   //priceBtn.innerText=pr;
+
+// }
 
 
 
+//SepcificPantsModals
 
+const SinglePlantDescription=async(id)=>{
+  const url=`https://openapi.programming-hero.com/api/plant/${id}`;
+  const res=await fetch(url);
+  const cnvrtJson= await res.json();
+  const data= cnvrtJson.plants;
+  my_modal_3.showModal();
+  const PlantsDescription=document.getElementById('PlantsDescription');
+  PlantsDescription.innerHTML=`
+  
+    <div>
+        <p class="text-[1.5rem] font-semibold">${data.name}</p>
+    </div>
+    <div>
+      <img class="h-[20rem] w-full rounded-md mt-3 mb-4" src="${data.image}" alt="">
+    </div>
+    <div>
+      <p class="text-[1.1rem]"><span class="text-[1.2rem] font-medium">Catagory:</span> ${data.category}</p>
+      <p class="text-[1.1rem]"><span class="text-[1.2rem] font-medium">Price:</span> <span>৳</span>${data.price}</p>
+      <p class="text-[1.1rem]"><span class="text-[1.2rem] font-medium">Description:</span> ${data.description}</p>
+    </div>
+  `;
+  PlantsDescription.appendChild(dv);
 
-
+}
 
 
 // ///display all card Section
@@ -326,18 +296,16 @@ const AllCardSection=() =>{
                 <div class="For_Images h-[13rem] rounded-md">
 
                   <div>
-                    <img class="h-[13rem] w-full mx-auto rounded-md " src="${it.image}" alt="">
+                    <img class="h-[16rem] w-full mx-auto rounded-md " src="${it.image}" alt="">
                   </div>
-
-
                 </div>
-                <p class=" mt-4 font-semibold mb-2">${it.name}</p>
-                <p class="mt-3 mb-7 text-justify sm:h-[8rem] md:h-[6rem]">${it.description}</p>
+                <p id="specific-${it.id}" onclick="SinglePlantDescription(${it.id})" class=" mt-15 font-semibold mb-2">${it.name}</p>
+                <p class="mt-3 mb-6 text-justify sm:h-[8rem] md:h-[6rem]">${it.description}</p>
                 <div class="flex justify-between items-center mb-5 h-[3rem]">
                   <button class="px-2 py-1 bg-[#cef0dc] rounded-full text-[#14803c] font-medium cursor-pointer">${it.category}</button>
                   <p class="font-semibold "><span>৳</span>${it.price}</p>
                 </div>
-                <button class="mb-2 h-fit p-2 w-full bg-[#14803c] text-white rounded-full cursor-pointer hover:bg-green-800">Add to Cart</button>
+                <button onclick="CartSection(${it.id}),smCart(${it.id})" class="mb-2 h-fit p-2 w-full bg-[#14803c] text-white rounded-full cursor-pointer hover:bg-green-800">Add to Cart</button>
                 </div>
     
     

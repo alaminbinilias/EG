@@ -98,6 +98,23 @@ const smCart=async(id)=>{
 
 
 
+///Manage Spinner
+
+const Spinner=(status)=>{
+  if(status==true){
+    document.getElementById('Spin').classList.remove('hidden');
+    document.getElementById('card_Section').classList.add('hidden');
+
+  }
+  else{
+
+    document.getElementById('Spin').classList.add('hidden');
+    document.getElementById('card_Section').classList.remove('hidden');
+  }
+}
+
+///End Of Manage Spinner
+
 // catagory Name or all tree name
 
 
@@ -112,6 +129,7 @@ fetch(url)
 
 const treeBtn = (arr) => {
   for (it of arr) {
+    Spinner(true);
     const treeCatagry = document.getElementById('treeCatagory');
     // console.log(treeCatagry);
 
@@ -128,6 +146,7 @@ const treeBtn = (arr) => {
     `;
     treeCatagry.appendChild(dv);
     treeCatagorySm.appendChild(dv1);
+    Spinner(false);
   }
 }
 
@@ -161,7 +180,6 @@ const ClearSelectedBtnStyle=()=>{
 
 
 const specificBtnItems=(SpecificPlants)=>{
-
   const plantsSection = document.getElementById('card_Section');
   plantsSection.innerText="";
 
@@ -170,6 +188,7 @@ const specificBtnItems=(SpecificPlants)=>{
   for(it of SpecificPlants){
 
     const dv=document.createElement('div');
+    Spinner(true);
 
     dv.innerHTML=`
     
@@ -195,7 +214,7 @@ const specificBtnItems=(SpecificPlants)=>{
     `;
 
     plantsSection.appendChild(dv);
-
+    Spinner(false);
   }
 }
 
@@ -204,13 +223,11 @@ const specificBtnItems=(SpecificPlants)=>{
 const selctedBtn=(id)=>{
 
 
-
   const url=`https://openapi.programming-hero.com/api/category/${id}`;
-
   fetch(url)
   .then(response => response.json())
   .then(data => specificBtnItems(data.plants));
-  
+  Spinner(true);
   const specificBtn=document.getElementById(`btn-${id}`);
   const specificBtn1=document.getElementById(`btn1-${id}`);
   
@@ -281,13 +298,13 @@ const AllCardSection=() =>{
  fetch(LinkSection)
   .then(response => response.json())
   .then(allData => allPlantsData(allData.plants));
+  Spinner(true);
 
  const allPlantsData = (plants) => {
 
    for (it of plants) {
     // console.log(it.image);
      const plantsSection = document.getElementById('card_Section');
-
      const dv = document.createElement('div');
 
      dv.innerHTML = `
@@ -311,6 +328,7 @@ const AllCardSection=() =>{
     
  `;
      plantsSection.appendChild(dv);
+     Spinner(false);
   }
 }
 

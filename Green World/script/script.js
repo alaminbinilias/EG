@@ -2,6 +2,17 @@
 
   let i=0;
   let pr=0;
+  let pk=1;
+
+  const clearCart=(price,items)=>{
+    const DeleteCart=document.getElementById(`ClearBtn-${items}`);
+    //console.log(DeleteCart);
+    DeleteCart.classList.add('hdn');
+    pr-=price;
+    prBtn=document.getElementById('PriceBtn');
+    prBtn.innerText=pr;
+
+  }
   const CartSection=async(id)=>{
   const url=`https://openapi.programming-hero.com/api/plant/${id}`;
   const res=await fetch(url);
@@ -14,7 +25,14 @@
     pr+=mnData.price;
     i++;
     //console.log(pr);
-    
+    const Price=document.getElementById('PriceBtn');
+    Price.innerText=pr;
+
+    const LastOption=document.getElementById('totalOption');
+    // LastOption.classList.add("move");
+    const Options=document.getElementById('totalOptions');
+    Options.style.marginTop=pk+"10px";
+    pk++;
     //price+=pr;
     dv.innerHTML=`
     
@@ -31,14 +49,6 @@
                 </div>
               </div>
             </div>
-
-      <div class="absolute bottom right-0" id="totalOption">
-              <div class="">
-              <div class="mb-5 mt-2 px-3 flex justify-between items-center inter">
-                  <p class="font-medium text-[1.2rem] mr-3">Total:</p>
-                  <span>৳</span><p id="PriceBtn" class="font-medium text-[1.2rem]">${pr}</p>
-              </div>
-          </div>
     `;
     CartSections.appendChild(dv);
     
@@ -75,15 +85,6 @@ const smCart=async(id)=>{
                 </div>
               </div>
             </div>
-
-      <div class="absolute  md:bottom right-0" id="totalOption">
-              <div class="">
-              <div class="px-9 flex justify-between items-center inter">
-                  <p class="font-medium text-[1.2rem] mr-3">Total:</p>
-                  <span>৳</span><p id="PriceBtn" class="font-medium text-[1.2rem]">${pr1}</p>
-              </div>
-          </div>
-
   
   `;
   modalDetails.appendChild(dv);

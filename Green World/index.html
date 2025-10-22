@@ -68,7 +68,7 @@
 
     <div class="bg-[#f0fcf4]">
 
-      <!-- <section class="bg-[#cef0dc] inter">
+       <!-- <section class="bg-[#cef0dc] inter"> -->
         <div class="grid sm:grid-cols-1  md:grid-cols-12">
           <div class="fst col-span-4">
             <img src="./assets/hero-leaf1.png" alt="">
@@ -76,7 +76,7 @@
 
           <div class="scd col-span-4 mt-20">
             <p class="text-center text-[#1F2937] text-[3rem] font-semibold mb-2">Plant a Tree, Grow a Future</p>
-            <p class="text-center mb-6 text-gray-700 text-[1rem]">Join our mission to plant 1 million trees and make the
+            <p class="p-2 md:p-0 text-center mb-6 text-gray-700 text-[1rem]">Join our mission to plant 1 million trees and make the
               Earth greener for future
               generations.</p>
             <button
@@ -88,7 +88,7 @@
             <img class="hidden md:block" src="./assets/hero-leaf2.png" alt="">
           </div>
         </div>
-      </section> -->
+      </section>
       <!-- EndHeroSection -->
 
 
@@ -125,7 +125,6 @@
                     <div id="treeCatagorysm">
 
                       <!-- <button class=" AllBtns1 SelectedBtn cursor-pointer w-full hover:bg-[#58d786] hover:text-white text-left py-1 px-1 rounded-md">All Trees</button> -->
-
                     </div>
                   </div>
 
@@ -165,10 +164,16 @@
 
           <!-- Cart_Section -->
 
+
+
+
+
+          
+
           <!-- for moblile section -->
           <div class="navbar block md:hidden">
             <div class="flex-none">
-              <div class="dropdown dropdown-end" onclick="my_modal_1.showModal()">
+              <div class="dropdown dropdown-end">
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
                   <div class="indicator">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
@@ -180,20 +185,16 @@
                   </div>
                 </div>
                 <div tabindex="0" class="card card-compact dropdown-content bg-base-100 z-1 mt-3 w-52 shadow">
-                  
+
+                  <div class="card-body">
+                  <span class="text-info">Your Amount: $ <span id="cartModalPrice">0</span></span>
+                  <div class="card-actions">
+                    <button onclick="my_modal_1.showModal()" id="smViewCart" class="btn btn-primary btn-block">View cart</button>
+                  </div>
                 </div>
-              </div>
-              <div class="dropdown dropdown-end">
-                <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                  <li>
-                    <a class="justify-between">
-                      Profile
-                      <span class="badge">New</span>
-                    </a>
-                  </li>
-                  <li><a>Settings</a></li>
-                  <li><a>Logout</a></li>
-                </ul>
+
+
+                </div>
               </div>
             </div>
           </div>
@@ -238,6 +239,8 @@
   <div class="modal-box">
     <div id="modlDetails" class="overflow-y-auto">
 
+      <p class="font-medium text-[1rem] mb-3">Your Cart</p>
+
     </div>
     <div class="modal-action">
       <form method="dialog">
@@ -247,7 +250,6 @@
     </div>
   </div>
 </dialog>
-
 
 <!-- Modal For PantsDescription -->
 <!-- You can open the modal using ID.showModal() method -->

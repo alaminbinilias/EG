@@ -3,16 +3,21 @@
   let i=0;
   let pr=0;
   let pk=1;
-
+  let  PT=i;
   const clearCart=(price,items)=>{
-    const DeleteCart=document.getElementById(`ClearBtn-${items}`);
-    //console.log(DeleteCart);
-    DeleteCart.classList.add('hdn');
-    pr-=price;
-    prBtn=document.getElementById('PriceBtn');
-    prBtn.innerText=pr;
+   const DeleteCart=document.getElementById(`ClearBtn-${items}`);
+  //   //console.log(DeleteCart);
+     const DeleteCartSm=document.getElementById(`ClearBtnsm-${items}`);
+  //   //console.log(DeleteCartSm);
+        DeleteCart.classList.add('hdn');
+      DeleteCartSm.classList.add('hdn');
+      pr-=price;
+     prBtn=document.getElementById('PriceBtn');
+     prBtn.innerText=pr;
 
   }
+
+  
   const CartSection=async(id)=>{
   const url=`https://openapi.programming-hero.com/api/plant/${id}`;
   const res=await fetch(url);
@@ -21,11 +26,13 @@
   //console.log(mnData);
     const CartSections=document.getElementById('DesktopCartSection');
     //alert("Hello");
+    const Cnt=document.getElementById('cntCart');
+    //console.log(cnt);
     const dv=document.createElement('div');
-    pr+=mnData.price;
-    i++;
+    //i++;
     //console.log(pr);
     const Price=document.getElementById('PriceBtn');
+    pr+=mnData.price;
     Price.innerText=pr;
 
     const LastOption=document.getElementById('totalOption');
@@ -33,7 +40,7 @@
     const Options=document.getElementById('totalOptions');
     Options.style.marginTop=pk+"10px";
     pk++;
-    //price+=pr;
+    i++;
     dv.innerHTML=`
     
     <div class="px-3 relative">
@@ -58,7 +65,7 @@
 
 //smCart(${it.id})
 
-let pr1=0;
+let pr1=pr;
 
 const smCart=async(id)=>{
   const url=`https://openapi.programming-hero.com/api/plant/${id}`;
@@ -67,13 +74,19 @@ const smCart=async(id)=>{
   const data=cnvrtjson.plants;
   //console.log(data);
   const modalDetails = document.getElementById('modlDetails');
-  console.log(modalDetails);
+  //const CNTCART=document.getElementById('cntCart');
+  //console.log(CNTCART);
+  //CNTCART.innerText=pp;
+  //const PriceRemain=document.getElementById('cartModalPrice');
+  //PriceRemain.innerText=pr1;
+  ///modalDetails.classList.add('hidden');
+  //console.log(modalDetails);
+  //pr1+=data.price;
   const dv=document.createElement('div');
-  pr1+=data.price;
   dv.innerHTML=`
 
   <div class="px-3 relative">
-              <div id="ClearBtn-${i}" class="bg-[#f0fcf4] p-2 rounded-md mb-2">
+              <div id="ClearBtnsm-${i}" class="bg-[#f0fcf4] p-2 rounded-md mb-2">
                 <p class="font-medium">${data.name}</p>
                 <div class="flex justify-between">
                   <div>
@@ -318,12 +331,12 @@ const AllCardSection=() =>{
                   </div>
                 </div>
                 <p id="specific-${it.id}" onclick="SinglePlantDescription(${it.id})" class=" mt-15 font-semibold mb-2">${it.name}</p>
-                <p class="mt-3 mb-6 text-justify sm:h-[8rem] md:h-[6rem]">${it.description}</p>
-                <div class="flex justify-between items-center mb-5 h-[3rem]">
+                <p class="mt-3 mb-10 text-justify sm:h-[8rem] md:h-[6rem]">${it.description}</p>
+                <div class="flex justify-between items-center mb- h-[3rem]">
                   <button class="px-2 py-1 bg-[#cef0dc] rounded-full text-[#14803c] font-medium cursor-pointer">${it.category}</button>
                   <p class="font-semibold "><span>৳</span>${it.price}</p>
                 </div>
-                <button onclick="CartSection(${it.id}),smCart(${it.id})" class="mb-2 h-fit p-2 w-full bg-[#14803c] text-white rounded-full cursor-pointer hover:bg-green-800">Add to Cart</button>
+                <button onclick="CartSection(${it.id}),smCart(${it.id})" class="mb-2 mt-5 h-fit p-2 w-full bg-[#14803c] text-white rounded-full cursor-pointer hover:bg-green-800">Add to Cart</button>
                 </div>
     
     
